@@ -1,4 +1,4 @@
-// #ifndef BUNDLED
+// #ifndef BUFFERVIEW_BUNDLED
 /*
  Copyright 2013 Daniel Wirtz <dcode@dcode.io>
 
@@ -290,7 +290,7 @@ module.exports = (function() {
         if (!this.noAssert && (offset < 0 || offset+8 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
         le ? this.buffer.writeDoubleLE(value, offset, true) : this.buffer.writeDoubleBE(value, offset, true);
     };
+// #ifndef BUFFERVIEW_BUNDLED
 
-// #ifndef BUNDLED
     return BufferView;
 })(); // #endif
