@@ -1,4 +1,4 @@
-BufferView
+![BufferView - A DataView for node Buffers](https://raw.github.com/dcodeIO/BufferView/master/BufferView.png)
 ==========
 
 This one is simple: It's doing exactly what [DataView](https://developer.mozilla.org/en-US/docs/Web/API/DataView) does

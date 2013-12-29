@@ -2,7 +2,7 @@
     "name": "bufferview",
     "version": "1.0.0",
     "author": "Daniel Wirtz <dcode@dcode.io>",
-    "description": "An optimized DataView-compatible BufferView for node Buffers.",
+    "description": "A DataView for node Buffers.",
     "main": "BufferView.min.js",
     "repository": {
         "type": "git",
