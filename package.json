@@ -14,6 +14,7 @@
     "keywords": ["net", "array", "buffer", "arraybuffer", "typed array", "bytebuffer"],
     "devDependencies": {
         "testjs": "latest",
+        "preprocessor": "latest",
         "closurecompiler": "latest"
     },
     "license": "Apache-2.0",
