@@ -24,7 +24,8 @@
         "prepublish": "npm test",
         "test": "node node_modules/testjs/bin/testjs tests/suite.js",
 
-        "make": "npm run-script compile && npm test",
+        "build": "preprocess src/BufferView.js src/ > BufferView.js",
+        "make": "npm run-script build && npm run-script compile && npm test",
         "compile": "ccjs BufferView.js --create_source_map=BufferView.min.map --compilation_level=SIMPLE_OPTIMIZATIONS > BufferView.min.js"
     }
 }

@@ -1,3 +1,4 @@
+// #ifndef BUNDLED
 /*
  Copyright 2013 Daniel Wirtz <dcode@dcode.io>
 
@@ -21,6 +22,7 @@
  */ //
 module.exports = (function() {
     "use strict";
+// #endif
 
     /**
      * Constructs a new BufferView.
@@ -289,5 +291,6 @@ module.exports = (function() {
         le ? this.buffer.writeDoubleLE(value, offset, true) : this.buffer.writeDoubleBE(value, offset, true);
     };
 
+// #ifndef BUNDLED
     return BufferView;
-})();
+})(); // #endif
