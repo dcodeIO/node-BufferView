@@ -15,5 +15,6 @@ library does not need to copy back and forth between Buffers and ArrayBuffers - 
 
 * Extends DataView for `instanceof` compatibility
 * [Well tested](https://github.com/dcodeIO/BufferView/blob/master/tests/suite.js)
+* Lean (BufferView.min.js is ~3KB)
 
 **License:** [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
