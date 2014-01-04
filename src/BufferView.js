@@ -1,4 +1,3 @@
-// #ifndef BUFFERVIEW_BUNDLED
 /*
  Copyright 2013 Daniel Wirtz <dcode@dcode.io>
 
@@ -22,7 +21,13 @@
  */ //
 module.exports = (function() {
     "use strict";
-// #endif
+
+    /**
+     * Node Buffer.
+     * @type {?buffer.Buffer}
+     * @inner
+     */
+    var Buffer = require("buffer")["Buffer"];
 
     /**
      * Constructs a new BufferView.
@@ -71,7 +76,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.create = function(buffer, byteOffset, byteLength) {
-        if (typeof Buffer === 'function' && typeof Buffer.isBuffer === 'function' && Buffer.isBuffer(buffer)) return new BufferView(buffer, byteOffset, byteLength);
+        if (Buffer && Buffer.isBuffer(buffer)) return new BufferView(buffer, byteOffset, byteLength);
         return new DataView(buffer, byteOffset, byteLength);
     };
 
@@ -290,7 +295,6 @@ module.exports = (function() {
         if (!this.noAssert && (offset < 0 || offset+8 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
         le ? this.buffer.writeDoubleLE(value, offset, true) : this.buffer.writeDoubleBE(value, offset, true);
     };
-// #ifndef BUFFERVIEW_BUNDLED
 
     return BufferView;
-})(); // #endif
+})();

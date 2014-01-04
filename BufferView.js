@@ -23,6 +23,13 @@ module.exports = (function() {
     "use strict";
 
     /**
+     * Node Buffer.
+     * @type {?buffer.Buffer}
+     * @inner
+     */
+    var Buffer = require("buffer")["Buffer"];
+
+    /**
      * Constructs a new BufferView.
      * @exports BufferView
      * @class An optimized DataView-compatible BufferView for node Buffers.
@@ -69,7 +76,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.create = function(buffer, byteOffset, byteLength) {
-        if (typeof Buffer === 'function' && typeof Buffer.isBuffer === 'function' && Buffer.isBuffer(buffer)) return new BufferView(buffer, byteOffset, byteLength);
+        if (Buffer && Buffer.isBuffer(buffer)) return new BufferView(buffer, byteOffset, byteLength);
         return new DataView(buffer, byteOffset, byteLength);
     };
 
@@ -291,3 +298,4 @@ module.exports = (function() {
 
     return BufferView;
 })();
+
