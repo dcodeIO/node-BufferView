@@ -38,12 +38,10 @@ module.exports = (function() {
      *  reference. If not specified, the view of the buffer will start with the first byte.
      * @param {number=} byteLength The number of elements in the byte array. If unspecified, length of the view will match
      *  the buffer's length.
-     * @param {boolean=} noAssert Whether to disable offset assertions. Defaults to `false`, as with DataViews. Values
-     *  are never asserted.
      * @constructor
      * @extends DataView
      */
-    var BufferView = function(buffer, byteOffset, byteLength, noAssert) {
+    var BufferView = function(buffer, byteOffset, byteLength) {
 
         byteOffset = byteOffset || 0;
         byteLength = byteLength || buffer.length;
@@ -56,12 +54,6 @@ module.exports = (function() {
         this.buffer = byteOffset === 0 && byteLength === buffer.length
             ? buffer
             : buffer.slice(byteOffset || 0, byteLength || buffer.length); // Creates a view and does not copy, so it's fine.
-
-        /**
-         * Whether assertions of offsets and values are disabled.
-         * @type {boolean}
-         */
-        this.noAssert = !!noAssert;
     };
 
     /**
@@ -111,7 +103,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getUint8 = function(offset) {
-        return this.buffer.readUInt8(offset, this.noAssert);
+        return this.buffer.readUInt8(offset);
     };
 
     /**
@@ -121,8 +113,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setUint8 = function(offset, value) {
-        if (!this.noAssert && (offset < 0 || offset >= this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        this.buffer.writeUInt8(value, offset, true);
+        this.buffer.writeUInt8(value, offset);
     };
 
     /**
@@ -132,7 +123,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getInt8 = function(offset) {
-        return this.buffer.readInt8(offset, this.noAssert);
+        return this.buffer.readInt8(offset);
     };
 
     /**
@@ -142,8 +133,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setInt8 = function(offset, value) {
-        if (!this.noAssert && (offset < 0 || offset >= this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        this.buffer.writeInt8(value, offset, true);
+        this.buffer.writeInt8(value, offset);
     };
 
     /**
@@ -155,7 +145,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getUint16 = function(offset, le) {
-        return le ? this.buffer.readUInt16LE(offset, this.noAssert) : this.buffer.readUInt16BE(offset, this.noAssert);
+        return le ? this.buffer.readUInt16LE(offset) : this.buffer.readUInt16BE(offset);
     };
 
     /**
@@ -167,8 +157,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setUint16 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+2 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeUInt16LE(value, offset, true) : this.buffer.writeUInt16BE(value, offset, true);
+        le ? this.buffer.writeUInt16LE(value, offset) : this.buffer.writeUInt16BE(value, offset);
     };
 
     /**
@@ -180,7 +169,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getInt16 = function(offset, le) {
-        return le ? this.buffer.readInt16LE(offset, this.noAssert) : this.buffer.readInt16BE(offset, this.noAssert);
+        return le ? this.buffer.readInt16LE(offset) : this.buffer.readInt16BE(offset);
     };
 
     /**
@@ -192,8 +181,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setInt16 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+2 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeInt16LE(value, offset, true) : this.buffer.writeInt16BE(value, offset, true);
+        le ? this.buffer.writeInt16LE(value, offset) : this.buffer.writeInt16BE(value, offset);
     };
 
     /**
@@ -205,7 +193,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getUint32 = function(offset, le) {
-        return le ? this.buffer.readUInt32LE(offset, this.noAssert) : this.buffer.readUInt32BE(offset, this.noAssert);
+        return le ? this.buffer.readUInt32LE(offset) : this.buffer.readUInt32BE(offset);
     };
 
     /**
@@ -217,8 +205,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setUint32 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+4 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeUInt32LE(value, offset, true) : this.buffer.writeUInt32BE(value, offset, true);
+        le ? this.buffer.writeUInt32LE(value, offset) : this.buffer.writeUInt32BE(value, offset);
     };
 
     /**
@@ -230,7 +217,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getInt32 = function(offset, le) {
-        return le ? this.buffer.readInt32LE(offset, this.noAssert) : this.buffer.readInt32BE(offset, this.noAssert);
+        return le ? this.buffer.readInt32LE(offset) : this.buffer.readInt32BE(offset);
     };
 
     /**
@@ -242,8 +229,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setInt32 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+4 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeInt32LE(value, offset, true) : this.buffer.writeInt32BE(value, offset, true);
+        le ? this.buffer.writeInt32LE(value, offset) : this.buffer.writeInt32BE(value, offset);
     };
 
     /**
@@ -255,7 +241,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getFloat32 = function(offset, le) {
-        return le ? this.buffer.readFloatLE(offset, this.noAssert) : this.buffer.readFloatBE(offset, this.noAssert);
+        return le ? this.buffer.readFloatLE(offset) : this.buffer.readFloatBE(offset);
     };
 
     /**
@@ -267,8 +253,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setFloat32 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+4 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeFloatLE(value, offset, true) : this.buffer.writeFloatBE(value, offset, true);
+        le ? this.buffer.writeFloatLE(value, offset) : this.buffer.writeFloatBE(value, offset);
     };
 
     /**
@@ -280,7 +265,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.getFloat64 = function(offset, le) {
-        return le ? this.buffer.readDoubleLE(offset, this.noAssert) : this.buffer.readDoubleBE(offset, this.noAssert);
+        return le ? this.buffer.readDoubleLE(offset) : this.buffer.readDoubleBE(offset);
     };
 
     /**
@@ -292,8 +277,7 @@ module.exports = (function() {
      * @expose
      */
     BufferView.prototype.setFloat64 = function(offset, value, le) {
-        if (!this.noAssert && (offset < 0 || offset+8 > this.buffer.length)) throw(new Error("Offset out of bounds: "+offset));
-        le ? this.buffer.writeDoubleLE(value, offset, true) : this.buffer.writeDoubleBE(value, offset, true);
+        le ? this.buffer.writeDoubleLE(value, offset) : this.buffer.writeDoubleBE(value, offset);
     };
 
     return BufferView;
